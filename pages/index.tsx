@@ -7,6 +7,7 @@ import { RequestPay } from "../components/RequestPay";
 // import { WalletBalance } from '../components/walletBalance';
 // import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../components/header";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
                 />
                 <link rel="icon" href="/torii.svg" />
             </Head>
+            <Header />
             <main className={styles.main}>
                 <h1 id="werk" className={styles.title}>
                     Welcome to the Shrine of Bonk!

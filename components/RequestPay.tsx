@@ -19,55 +19,55 @@ export const RequestPay: FC = () => {
     const RECEIVING_BONK_ATA = "B7Zw8g26Pdtm9zBFkkyqurhE9mwVLKgg45U2RfnEjmoA";
 
     const onClick = useCallback(async () => {
-        if (!publicKey) {
-            console.log("error", "Wallet not connected!");
-            // alert("Wallet not Connected!");
-            toast.error('Wallet not Connected!', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-                theme: "dark",
-                });
-            return;
-        }
+        // if (!publicKey) {
+        //     console.log("error", "Wallet not connected!");
+        //     // alert("Wallet not Connected!");
+        //     toast.error('Wallet not Connected!', {
+        //         position: "top-center",
+        //         autoClose: 3000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: false,
+        //         draggable: false,
+        //         progress: undefined,
+        //         theme: "dark",
+        //         });
+        //     return;
+        // }
 
         const transaction = new Transaction();
-        try {
+         try {
 
-            const source_account = await getAssociatedTokenAddress(
-                new PublicKey(BONK_TOKEN_ADDRESS),
-                publicKey
-            )
+        //     const source_account = await getAssociatedTokenAddress(
+        //         new PublicKey(BONK_TOKEN_ADDRESS),
+        //         publicKey
+        //     )
 
-            const ix = createTransferCheckedInstruction(
-                source_account,
-                new PublicKey(BONK_TOKEN_ADDRESS),
-                new PublicKey(RECEIVING_BONK_ATA),
-                publicKey,
-                BONK_COST * Math.pow(10, BONK_DECIMALS),
-                BONK_DECIMALS
-            );
-            transaction.add(ix);
+        //     const ix = createTransferCheckedInstruction(
+        //         source_account,
+        //         new PublicKey(BONK_TOKEN_ADDRESS),
+        //         new PublicKey(RECEIVING_BONK_ATA),
+        //         publicKey,
+        //         BONK_COST * Math.pow(10, BONK_DECIMALS),
+        //         BONK_DECIMALS
+        //     );
+        //     transaction.add(ix);
 
-            const tx = await sendTransaction(transaction, connection);
+        //     const tx = await sendTransaction(transaction, connection);
             const id = toast.loading("Please wait...", {
                 position: "top-center",
                 theme: "dark",
             })
             
-            await connection.confirmTransaction({
-                blockhash: (
-                    await connection.getLatestBlockhash("max")
-                ).blockhash,
-                lastValidBlockHeight: (
-                    await connection.getLatestBlockhash("max")
-                ).lastValidBlockHeight,
-                signature: tx,
-            });
+        //     await connection.confirmTransaction({
+        //         blockhash: (
+        //             await connection.getLatestBlockhash("max")
+        //         ).blockhash,
+        //         lastValidBlockHeight: (
+        //             await connection.getLatestBlockhash("max")
+        //         ).lastValidBlockHeight,
+        //         signature: tx,
+        //     });
             toast.update(id, { render: "Transaction Confirmed! 🚀", type: "success", isLoading: false });
                 
             // alert("Transaction Confirmed!");
@@ -93,7 +93,7 @@ export const RequestPay: FC = () => {
                 root.render(Fortune);
             }, 2500)
 
-            // console.log("fuck")
+             console.log("fuck")
 
         } catch (error: any) {
             toast.error(error, {
